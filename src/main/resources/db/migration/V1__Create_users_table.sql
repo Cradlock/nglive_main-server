@@ -1,0 +1,9 @@
+CREATE TABLE users (
+  id BIGSERIAL PRIMARY KEY,
+  username VARCHAR(100) NOT NULL UNIQUE,
+  role VARCHAR(25) NOT NULL DEFAULT 'client',
+  created_at TIMESTAMP DEFAULT now()
+)
+
+
+
