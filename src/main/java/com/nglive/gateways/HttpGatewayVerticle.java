@@ -27,7 +27,7 @@ public class HttpGatewayVerticle extends AbstractVerticle{
   @Override
   public void start(Promise<Void> startPromise){
     int port = config().getInteger("PORT");
-    String host = config().getString("HTTP_HOST");
+    String host = config().getString("HTTP_HOST","0.0.0.0");
     
 
     Router mainRouter = Router.router(vertx);

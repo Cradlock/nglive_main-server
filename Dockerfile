@@ -15,6 +15,8 @@ COPY src ./src
 # Собираем fat-jar
 # Обычно это команда shadowJar, если используете соответствующий плагин
 RUN gradle shadowJar --no-daemon
+RUN ls -l build/libs/
+
 
 # --- Этап 2: Запуск (Runtime stage) ---
 FROM eclipse-temurin:17-jre-alpine
