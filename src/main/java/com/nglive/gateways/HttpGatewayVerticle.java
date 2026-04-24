@@ -10,18 +10,26 @@ public class HttpGatewayVerticle extends AbstractVerticle{
   
 
   public void connectRouters(Router sourceRouter){
-    
+    // Тестовый обработчик
+    sourceRouter.get("/hello")
+      .handler(ctx -> {
+        ctx.response()
+          .putHeader("Content-Type", "text/plain; charset=UTF-8")
+          .end("Hello user");
+      });
+
     // Подключение auth - сервиса 
     sourceRouter.mountSubRouter("/auth", AuthRouter.createRouter(vertx));
-
+  
   } 
   
 
   @Override
   public void start(Promise<Void> startPromise){
-    int port = config().getInteger("HTTP_PORT");
+    int port = config().getInteger("PORT");
     String host = config().getString("HTTP_HOST");
     
+
     Router mainRouter = Router.router(vertx);
     
     connectRouters(mainRouter);

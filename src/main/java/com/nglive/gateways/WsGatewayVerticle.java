@@ -18,7 +18,7 @@ public class WsGatewayVerticle extends AbstractVerticle {
 
   @Override
   public void start(Promise<Void> startPromise){
-    int port = config().getInteger("WS_PORT",9000);
+    int port = config().getInteger("PORT",8000);
       
     Router mainRouter = Router.router(vertx);
     
@@ -28,7 +28,7 @@ public class WsGatewayVerticle extends AbstractVerticle {
       .requestHandler(mainRouter)
       .listen(port, res -> {
         if(res.succeeded()){
-          System.out.println("WebSocket шлюз запущен на порту "+port);
+          System.out.println("WebSocket шлюз запущен");
         } else {
           System.out.println("Ошибка создания WebSocket Gateway:"+res.cause());
         }

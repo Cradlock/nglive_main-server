@@ -49,15 +49,16 @@ public class MainVerticle extends AbstractVerticle{
     });
 
   }
-  
   // Деплой всех вертикалей 
   public void deploy(JsonObject config,Promise<Void> startPromise){
     
+
+
     // Инициализация баз данных
+    /*
     DatabaseHolder.init(vertx, config)
       // Запускаем если бд успешно подключился
       .compose(v -> {
-
         DeploymentOptions options = new DeploymentOptions()
           .setInstances(1)
           .setConfig(config);
@@ -72,9 +73,14 @@ public class MainVerticle extends AbstractVerticle{
         System.err.println("Ошибка в инициализации:"+ar.getMessage());
         ar.printStackTrace();
       });
-  
-
-
+    */
+    
+    DeploymentOptions options = new DeploymentOptions()
+      .setInstances(1)
+      .setConfig(config);
+    
+    vertx.deployVerticle(new HttpGatewayVerticle(),options);
+    vertx.deployVerticle(new WsGatewayVerticle(),options);
   }
   
  
