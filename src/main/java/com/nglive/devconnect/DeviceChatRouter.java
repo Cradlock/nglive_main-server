@@ -1,9 +1,9 @@
-package com.nglive.pcconnect;
+package com.nglive.devconnect;
 
 import io.vertx.core.Vertx;
 import io.vertx.ext.web.Router;
 
-public class PcChatRouter{
+public class DeviceChatRouter{
   
   public static void init(Router router){
 
@@ -12,7 +12,7 @@ public class PcChatRouter{
         .onSuccess(ws -> {
           System.out.println("Клиент подключился к серверу pc/chat/");
           
-          ws.writeTextMessage("Привет");
+          ws.writeTextMessage("Start");
 
           ws.handler(buffer -> {
             System.out.println(buffer.toString());
@@ -25,6 +25,8 @@ public class PcChatRouter{
           ctx.fail(400);
         });
     });
+    
+
 
   }
   

@@ -9,14 +9,17 @@ import io.vertx.ext.mongo.MongoClient;
 import io.vertx.pgclient.PgConnectOptions;
 import io.vertx.pgclient.PgPool;
 import io.vertx.sqlclient.PoolOptions;
+import io.vertx.redis.client.Redis;
+import io.vertx.redis.client.RedisAPI;
+
 
 public class DatabaseHolder {
   private static PgPool Pg_client;
-  
-
-
+  private static RedisAPI  Redis_client; 
 
   public static synchronized void initClients(Vertx vertx,JsonObject config){
+    
+    // Инициализация PostgreSQL
     if(Pg_client == null){
       Flyway flyway = Flyway.configure()
         .dataSource(
@@ -52,7 +55,11 @@ public class DatabaseHolder {
 
       Pg_client = PgPool.pool(vertx, connectOptions, new PoolOptions().setMaxSize(5));
     }
-
+    
+    // Инициализация Redis 
+    if(Redis_client == null){
+      
+    } 
   }
 
 

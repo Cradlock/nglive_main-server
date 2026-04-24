@@ -20,6 +20,7 @@ public class AuthRouter{
       .handler(ctx -> {
         
         JsonObject o = new JsonObject().put("msg", "Привет");
+        
         ctx.response().end(o.encode());      
     });
     

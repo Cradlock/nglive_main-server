@@ -1,6 +1,7 @@
 package com.nglive.gateways;
 
-import com.nglive.pcconnect.PcChatRouter;
+
+import com.nglive.devconnect.DeviceChatRouter;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Promise;
@@ -10,7 +11,7 @@ public class WsGatewayVerticle extends AbstractVerticle {
   
   public void connectRouters(Router sourceRouter){
     
-    sourceRouter.mountSubRouter("/pc", PcChatRouter.createRouter(vertx));
+    sourceRouter.mountSubRouter("/pc", DeviceChatRouter.createRouter(vertx));
   }
 
 
