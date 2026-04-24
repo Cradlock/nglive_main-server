@@ -27,7 +27,7 @@ USER vertx
 
 # Копируем собранный JAR из папки build/libs
 # Убедитесь, что имя файла соответствует вашему проекту
-COPY --from=build /app/build/libs/*-all.jar app.jar
+COPY --from=build /app/build/libs/main-server-0.0.1-fat.jar app.jar
 
 # Настройка порта для Render
 ENV PORT=10000
@@ -35,3 +35,5 @@ EXPOSE 10000
 
 # Настройки памяти для Java в контейнере
 ENTRYPOINT ["sh", "-c", "java -Xmx400m -Xms200m -jar app.jar"]
+
+
