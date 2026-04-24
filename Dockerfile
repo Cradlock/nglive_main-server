@@ -4,9 +4,7 @@ FROM gradle:8-jdk17-alpine AS build
 WORKDIR /app
 
 # Копируем файлы конфигурации Gradle для кэширования зависимостей
-COPY build.gradle settings.gradle ./
-# Если у вас есть gradle.properties или папка gradle/
-COPY gradle ./gradle 
+COPY build.gradle ./
 
 # Предварительно скачиваем зависимости (без сборки кода)
 RUN gradle dependencies --no-daemon
